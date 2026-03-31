@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finish Pros Collision Repair | Auto Paint & Body | Dallas & Marietta, GA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #c0281c;
+      --red-dark: #9b1f15;
+      --red-light: #e8342a;
+      --black: #1a1a1a;
+      --dark: #2c2c2c;
+      --mid: #555;
+      --muted: #888;
+      --light: #f4f4f2;
+      --white: #ffffff;
+      --border: #e0e0e0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 60px rgba(0,0,0,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--black);
+      color: #ccc;
+      font-size: 13px;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: .05em;
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 9px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .topbar a { color: #ccc; text-decoration: none; }
+    .topbar a:hover { color: var(--red-light); }
+    .topbar-item { display: flex; align-items: center; gap: 7px; }
+    .topbar-item svg { width: 14px; height: 14px; fill: var(--red); flex-shrink: 0; }
+    .topbar-group { display: flex; gap: 28px; flex-wrap: wrap; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 3px solid var(--red);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo-wrap { display: flex; align-items: center; padding: 10px 0; }
+    .logo-wrap img { height: 60px; width: auto; }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0;
+      align-items: center;
+    }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a, .nav-links > li > span {
+      display: block;
+      padding: 28px 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color .2s;
+      white-space: nowrap;
+    }
+    .nav-links > li > a:hover,
+    .nav-links > li > span:hover,
+    .nav-links > li.active > a { color: var(--red); }
+    .nav-links > li > a.cta-btn {
+      background: var(--red);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: 3px;
+      margin-left: 10px;
+    }
+    .nav-links > li > a.cta-btn:hover { background: var(--red-dark); color: var(--white); }
+
+    /* Dropdown */
+    .nav-links .has-dropdown > span::after {
+      content: ' ▾';
+      font-size: 10px;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      border-top: 3px solid var(--red);
+      min-width: 220px;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+    }
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: background .15s, color .15s;
+    }
+    .dropdown a:last-child { border-bottom: none; }
+    .dropdown a:hover { background: var(--light); color: var(--red); }
+    .has-dropdown:hover .dropdown { display: block; }
+
+    /* Mobile toggle */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; }
+    .hamburger span { display: block; width: 26px; height: 2.5px; background: var(--dark); border-radius: 2px; transition: .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: var(--light);
+      overflow: hidden;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.85) 45%, rgba(192,40,28,0.06) 100%);
+      z-index: 1;
+    }
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(192,40,28,0.028) 40px,
+        rgba(192,40,28,0.028) 41px
+      );
+      z-index: 0;
+    }
+    .hero-photo {
+      position: absolute;
+      right: -60px;
+      top: 0;
+      bottom: 0;
+      width: 56%;
+      background: url('https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=1200&q=80') center/cover no-repeat;
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+      opacity: .82;
+      z-index: 0;
+    }
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--white) 0%, transparent 30%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      width: 100%;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      margin-bottom: 22px;
+      border-radius: 2px;
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(52px, 8vw, 96px);
+      line-height: .95;
+      text-transform: uppercase;
+      color: var(--black);
+      max-width: 600px;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red);
+      display: block;
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: var(--mid);
+      max-width: 440px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 60px; }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 16px 36px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .btn-outline {
+      border: 2.5px solid var(--black);
+      color: var(--black);
+      padding: 14px 30px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: all .2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: var(--black); color: var(--white); }
+
+    .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+    .stat-item { }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 44px;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--black);
+      padding: 22px 24px;
+    }
+    .trust-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #ccc;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .trust-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .trust-icon svg { width: 18px; height: 18px; fill: white; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 90px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 5vw, 60px);
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: var(--light); }
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .service-card-top {
+      padding: 32px 28px 24px;
+      border-bottom: 3px solid var(--border);
+      flex: 1;
+    }
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--red);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .service-icon svg { width: 26px; height: 26px; fill: white; }
+    .service-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .service-card p { font-size: 14.5px; color: var(--mid); line-height: 1.65; }
+    .service-card-link {
+      padding: 14px 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .service-card-link::after { content: '→'; transition: transform .2s; }
+    .service-card:hover .service-card-link::after { transform: translateX(4px); }
+
+    /* ── ABOUT ── */
+    .about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+    .about-accent {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 160px;
+      height: 160px;
+      background: var(--red);
+      border-radius: 4px;
+      z-index: -1;
+    }
+    .about-badge {
+      position: absolute;
+      top: 20px;
+      left: -20px;
+      background: var(--black);
+      color: white;
+      padding: 18px 22px;
+      border-radius: 4px;
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .about-badge-num {
+      font-weight: 900;
+      font-size: 38px;
+      color: var(--red);
+      line-height: 1;
+      display: block;
+    }
+    .about-badge-text {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+    .about-text .section-sub { max-width: 100%; margin-bottom: 20px; }
+    .about-list {
+      list-style: none;
+      margin: 28px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .about-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    .about-list li::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 22px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+      background-size: 14px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* ── WHY US ── */
+    .why-us { background: var(--black); padding: 80px 24px; }
+    .why-us .section-title { color: var(--white); }
+    .why-us .section-sub { color: #999; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 56px;
+      background: #333;
+    }
+    .why-card {
+      background: #232323;
+      padding: 36px 28px;
+      transition: background .2s;
+    }
+    .why-card:hover { background: #2a2a2a; }
+    .why-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      color: var(--red);
+      opacity: .4;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .why-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .why-card p { font-size: 14px; color: #888; line-height: 1.65; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--light); }
+    .testimonials-header { margin-bottom: 56px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 36px 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 80px;
+      color: var(--red);
+      opacity: .15;
+      line-height: 1;
+    }
+    .stars { color: var(--red); font-size: 18px; letter-spacing: 2px; margin-bottom: 14px; }
+    .testimonial-card p { font-size: 15px; color: var(--mid); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+    .testimonial-author {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--dark);
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    /* ── LOCATIONS ── */
+    .locations { background: var(--white); }
+    .locations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 56px;
+    }
+    .location-card {
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .location-card:hover { border-color: var(--red); box-shadow: var(--shadow-lg); }
+    .location-map {
+      width: 100%;
+      height: 220px;
+      background: #e8e8e8;
+      overflow: hidden;
+    }
+    .location-map iframe { width: 100%; height: 100%; border: none; display: block; }
+    .location-info { padding: 28px 30px; }
+    .location-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .location-tag {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .location-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: var(--mid);
+    }
+    .location-detail svg { width: 16px; height: 16px; fill: var(--red); flex-shrink: 0; margin-top: 2px; }
+    .location-detail a { color: var(--dark); text-decoration: none; font-weight: 600; }
+    .location-detail a:hover { color: var(--red); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--red);
+      padding: 70px 24px;
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 5vw, 64px);
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .cta-banner p { color: rgba(255,255,255,.8); font-size: 17px; max-width: 500px; margin: 0 auto 36px; line-height: 1.6; }
+    .btn-white {
+      background: var(--white);
+      color: var(--red);
+      padding: 16px 42px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 17px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      display: inline-block;
+      transition: background .2s, transform .15s;
+    }
+    .btn-white:hover { background: var(--light); transform: translateY(-2px); }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--light); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contact-form {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 7px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      color: var(--dark);
+      background: var(--white);
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--red); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .contact-info { }
+    .contact-info .section-sub { margin-bottom: 36px; }
+    .hours-block {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 28px 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .hours-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hours-title svg { width: 18px; height: 18px; fill: var(--red); }
+    .hours-row { display: flex; justify-content: space-between; font-size: 15px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { color: var(--mid); }
+    .hours-row .time { font-weight: 600; color: var(--dark); }
+    .hours-row .open { color: var(--red); font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: #aaa;
+      padding: 60px 24px 28px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .footer-brand p { font-size: 14px; line-height: 1.7; }
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 9px; }
+    .footer-col ul li a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--red); }
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-bottom a { color: #aaa; text-decoration: none; }
+    .footer-bottom a:hover { color: var(--red); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hero-photo { display: none; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image-wrap { order: -1; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .locations-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .topbar-group { gap: 12px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-top: 3px solid var(--red);
+        box-shadow: var(--shadow-lg);
+        padding: 12px 0;
+        gap: 0;
+      }
+      .nav-links.open > li > a,
+      .nav-links.open > li > span { padding: 14px 24px; }
+      .dropdown { position: static; border-top: none; box-shadow: none; background: var(--light); }
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-group">
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+        Dallas: 540 Charles Hardy Pkwy, Dallas, GA 30157
+      </div>
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+        Marietta: 1350 S. Marietta Pkwy, Marietta, GA 30067
+      </div>
+    </div>
+    <div class="topbar-group">
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24"><path d="M12 1a9 9 0 1 0 0 18A9 9 0 0 0 12 1zm.5 13H11v-6h1.5V14zm0-7.5H11V5h1.5v1.5z"/></svg>
+        Mon–Fri &nbsp;8:30AM – 6:00PM
+      </div>
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.12-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+        <a href="tel:7709662845">770-966-2845</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo-wrap" href="#">
+      <img src="/mnt/user-data/uploads/Logo.jpg" alt="Finish Pros Collision Repair" onerror="this.onerror=null;this.src='https://finishprosautopaint.com/wp-content/uploads/2020/01/FPA-Logo-Black-Text-1.jpg';" />
+    </a>
+    <div class="hamburger" onclick="this.parentElement.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="has-dropdown">
+        <span>Services</span>
+        <div class="dropdown">
+          <a href="#">Auto Painting</a>
+          <a href="#">Collision Repair</a>
+          <a href="#">Minor Damage Repair</a>
+          <a href="#">Wheel Repair</a>
+          <a href="#">Paintless Dent Repair</a>
+        </div>
+      </li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Locations</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#contact" class="cta-btn">Free Estimate</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-photo"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Dallas & Marietta, GA</div>
+    <h1>Make Your<br /><em>Car Look</em><br />New Again</h1>
+    <p class="hero-sub">Locally owned and operated auto paint & collision repair specialists. Budget-friendly services with factory-quality results — free estimates always.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Estimate</a>
+      <a href="tel:7709662845" class="btn-outline">Call 770-966-2845</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Locations</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Free Estimates</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">★★★★★</div>
+        <div class="stat-label">Customer Rated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+      Insurance Estimates Welcome
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
+      Mon–Fri 8:30AM – 6:00PM
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
+      Factory Basecoat / Clearcoat
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+      Locally Owned & Operated
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="section-inner">
+    <div class="services-header">
+      <div>
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-sub">From a full repaint to minor ding repair — we have budget-friendly options for every vehicle and every situation.</p>
+      </div>
+      <a href="#contact" class="btn-primary" style="white-space:nowrap;">Free Estimate →</a>
+    </div>
+    <div class="services-grid">
+
+      <a href="#" class="service-card">
+        <div class="service-card-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+          </div>
+          <h3>Auto Painting</h3>
+          <p>Complete vehicle paint services to fit your budget and quality level. Only factory-finish basecoat/clearcoat applied to ensure longevity on every vehicle.</p>
+        </div>
+        <div class="service-card-link">Learn More</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-card-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          </div>
+          <h3>Collision Repair</h3>
+          <p>All insurance estimates welcome. We can apply your insurance dollars toward a full paint service — why repair just part of the vehicle when the entire car can look new again?</p>
+        </div>
+        <div class="service-card-link">Learn More</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-card-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+          </div>
+          <h3>Minor Damage Repair</h3>
+          <p>Scratches, dents, dings and other bumps and bruises can be repaired economically. Don't let small damage age your vehicle — we'll make it look showroom-fresh.</p>
+        </div>
+        <div class="service-card-link">Learn More</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-card-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14a6 6 0 1 0 0 12A6 6 0 0 0 12 6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg>
+          </div>
+          <h3>Wheel Repair</h3>
+          <p>Wheel repair services include curb rash removal, dull finish restoration, and full color changes. Get your wheels looking sharp again at a fraction of replacement cost.</p>
+        </div>
+        <div class="service-card-link">Learn More</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-card-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"/></svg>
+          </div>
+          <h3>Paintless Dent Repair</h3>
+          <p>Hail damage, minor dents or dings may not require any paint at all. Call today to learn more about our affordable paintless dent repair services.</p>
+        </div>
+        <div class="service-card-link">Learn More</div>
+      </a>
+
+      <a href="#contact" class="service-card" style="background: var(--red); border: none;">
+        <div class="service-card-top" style="border-bottom-color: rgba(255,255,255,0.2);">
+          <div class="service-icon" style="background: rgba(255,255,255,0.15);">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          </div>
+          <h3 style="color:white;">Free Estimates</h3>
+          <p style="color:rgba(255,255,255,.8);">Stop by either of our locations for a free written estimate — no obligation. Meet our friendly staff and see why customers keep coming back.</p>
+        </div>
+        <div class="service-card-link" style="color:white;">Schedule Now</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <img class="about-image" src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=800&q=80" alt="Auto body shop professionals at work" />
+        <div class="about-accent"></div>
+        <div class="about-badge">
+          <span class="about-badge-num">2</span>
+          <span class="about-badge-text">GA Locations</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">The Team You Can Trust</h2>
+        <p class="section-sub">Finish Pros is a locally owned and operated paint repair facility serving the greater Atlanta area. We specialize in budget-friendly overall paint services — and we treat every vehicle like it's our own.</p>
+        <p class="section-sub" style="margin-top:14px;">Your car needs more than mechanical upkeep. Over time, paint chips and loses its shine — aging your vehicle even when it's mechanically sound. That's where we come in. Our team of car enthusiasts brings the same level of professionalism and dedication to every job, big or small.</p>
+        <ul class="about-list">
+          <li>Free written estimates — both locations</li>
+          <li>Factory basecoat / clearcoat on every vehicle</li>
+          <li>All insurance estimates welcome</li>
+          <li>Fleet repair services available</li>
+          <li>Budget-friendly options for every vehicle</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Schedule a Free Estimate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--red)">Why Choose Finish Pros</div>
+    <h2 class="section-title" style="color:white;">The Finish Pros<br/>Difference</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h4>Factory Quality Finish</h4>
+        <p>We use only factory-quality basecoat/clearcoat on every vehicle — the same process manufacturers use for longevity and a flawless shine.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h4>Insurance Ready</h4>
+        <p>All insurance estimates are welcome. We can apply your insurance payment toward a complete paint service — maximize your claim's value.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h4>Budget Friendly</h4>
+        <p>We offer multiple service tiers and options so you can get the best result for your budget — no hidden costs, no surprises.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <h4>2 Convenient Locations</h4>
+        <p>Serving Dallas GA and Marietta GA — stop by either location for your free written estimate and meet our team in person.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-inner">
+    <div class="testimonials-header">
+      <div class="section-label">What Customers Say</div>
+      <h2 class="section-title">Happy Drivers,<br />Every Time</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>Great customer service and a fantastic staff. They made the entire process easy and stress-free. My car came back looking brand new!</p>
+        <div class="testimonial-author">— Satisfied Customer, Dallas GA</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>My entire car was painted and it has never looked so good. The color match was perfect and the finish is flawless. Thanks Finish Pros!</p>
+        <div class="testimonial-author">— Happy Customer, Marietta GA</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>Everyone at Finish Pros was so nice and helpful. My daughter was so happy after getting her car back — it looked better than when she bought it!</p>
+        <div class="testimonial-author">— Returning Customer, Atlanta Area</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations">
+  <div class="section-inner">
+    <div class="section-label">Find Us</div>
+    <h2 class="section-title">Two Locations<br/>to Serve You</h2>
+    <div class="locations-grid">
+      <div class="location-card">
+        <div class="location-map">
+          <iframe
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=540+Charles+Hardy+Pkwy+Dallas+GA"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="location-info">
+          <div class="location-name">Dallas, GA</div>
+          <span class="location-tag">Main Location</span>
+          <div class="location-detail">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+            540 Charles Hardy Parkway, Dallas, GA 30157
+          </div>
+          <div class="location-detail">
+            <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.12-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+            <a href="tel:7709662845">770-966-2845</a>
+          </div>
+          <div class="location-detail">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            Mon – Fri &nbsp;8:30 AM – 6:00 PM
+          </div>
+        </div>
+      </div>
+      <div class="location-card">
+        <div class="location-map">
+          <iframe
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=1350+South+Marietta+Pkwy+Marietta+GA"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="location-info">
+          <div class="location-name">Marietta, GA</div>
+          <span class="location-tag">Second Location</span>
+          <div class="location-detail">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+            1350 South Marietta Parkway, Marietta, GA 30067
+          </div>
+          <div class="location-detail">
+            <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.12-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+            <a href="tel:7707950323">770-795-0323</a>
+          </div>
+          <div class="location-detail">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            Mon – Fri &nbsp;8:30 AM – 6:00 PM
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Ready to Make Your<br />Car Look New Again?</h2>
+  <p>Stop by either location for a free written estimate. Our friendly team is ready to show you the options that fit your budget.</p>
+  <a href="#contact" class="btn-white">Get My Free Estimate</a>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">Get in Touch</div>
+        <h2 class="section-title" style="margin-bottom:14px;">Request a Free<br />Estimate</h2>
+        <p class="section-sub" style="margin-bottom:32px;">Fill out the form and we'll get back to you promptly. Or stop by either location Monday through Friday, 8:30AM – 6:00PM.</p>
+
+        <div class="hours-block">
+          <div class="hours-title">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            Business Hours
+          </div>
+          <div class="hours-row">
+            <span class="day">Monday – Friday</span>
+            <span class="time open">8:30 AM – 6:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Saturday</span>
+            <span class="time">Closed</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Sunday</span>
+            <span class="time">Closed</span>
+          </div>
+        </div>
+
+        <div class="hours-block">
+          <div class="hours-title">
+            <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.12-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+            Call Us
+          </div>
+          <div class="hours-row">
+            <span class="day">Dallas, GA</span>
+            <span class="time"><a href="tel:7709662845" style="color:var(--red);font-weight:700;text-decoration:none;">770-966-2845</a></span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Marietta, GA</span>
+            <span class="time"><a href="tel:7707950323" style="color:var(--red);font-weight:700;text-decoration:none;">770-795-0323</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(770) 555-0000" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Preferred Location</label>
+          <select>
+            <option value="">Select a location…</option>
+            <option>Dallas, GA</option>
+            <option>Marietta, GA</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select>
+            <option value="">Select a service…</option>
+            <option>Auto Painting</option>
+            <option>Collision Repair</option>
+            <option>Minor Damage Repair</option>
+            <option>Wheel Repair</option>
+            <option>Paintless Dent Repair</option>
+            <option>Not Sure / Free Estimate</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell Us About Your Vehicle</label>
+          <textarea placeholder="Year, make, model and any details about the work needed…"></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;border:none;font-size:16px;padding:18px;">
+          Send My Request →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-text">Finish Pros</div>
+        <p>Locally owned and operated auto paint & collision repair specialists serving Dallas and Marietta, GA. Factory-quality finishes at budget-friendly prices.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Auto Painting</a></li>
+          <li><a href="#">Collision Repair</a></li>
+          <li><a href="#">Minor Damage Repair</a></li>
+          <li><a href="#">Wheel Repair</a></li>
+          <li><a href="#">Paintless Dent Repair</a></li>
+          <li><a href="#">Free Estimates</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Locations</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:7709662845">Dallas: 770-966-2845</a></li>
+          <li><a href="tel:7707950323">Marietta: 770-795-0323</a></li>
+          <li><a href="#">Mon–Fri 8:30AM–6PM</a></li>
+          <li style="padding-top:8px;"><a href="#">540 Charles Hardy Pkwy<br/>Dallas, GA 30157</a></li>
+          <li style="padding-top:8px;"><a href="#">1350 S. Marietta Pkwy<br/>Marietta, GA 30067</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Finish Pros Collision Repair. All rights reserved.</span>
+      <span>Dallas, GA &amp; Marietta, GA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.service-card, .why-card, .testimonial-card, .location-card, .about-grid, .contact-grid');
+  revealEls.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
