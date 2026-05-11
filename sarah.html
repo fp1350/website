@@ -1,324 +1,733 @@
-<div style="padding: 1rem 0;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Day Trading AI Syllabus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #faf7f2;
+    --bg-card: #ffffff;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --ink-faded: #b8b8b8;
+    --rule: #e8e3d8;
+    --rule-soft: #f0ebe0;
+    --accent: #b8390e;
+    --accent-soft: #f5e9e2;
+    --gold: #a07c2c;
+    --green: #4a6b3a;
+    --green-soft: #e8efe2;
+    --amber: #c08a2a;
+    --amber-soft: #faf0d8;
+    --strike: #b8b8b8;
+  }
 
-<div style="margin-bottom: 2rem;">
-  <h1 style="margin: 0 0 0.5rem;">Day Trading AI Syllabus</h1>
-  <p style="font-size: 14px; color: var(--color-text-secondary); margin: 0;">30 questions to ask AI, organized by topic. Each entry: the question, why it matters, and what to walk away knowing.</p>
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184, 57, 14, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 60%, rgba(160, 124, 44, 0.04) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+
+  /* HEADER */
+  .masthead {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 24px 0 28px;
+    margin-bottom: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .masthead-left { flex: 1; min-width: 280px; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0 0 10px;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(38px, 5vw, 56px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  h1 .accent {
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .subtitle {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 560px;
+    line-height: 1.5;
+  }
+
+  .masthead-right {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+  }
+
+  /* PROGRESS BAR */
+  .progress-shell {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 56px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .progress-stat { flex: 0 0 auto; }
+  .progress-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0 0 6px;
+  }
+  .progress-stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .progress-stat-value .denom {
+    font-size: 16px;
+    color: var(--ink-muted);
+    font-weight: 400;
+  }
+
+  .progress-bar-wrap { flex: 1; min-width: 200px; }
+  .progress-bar-track {
+    height: 6px;
+    background: var(--rule-soft);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green) 0%, var(--gold) 100%);
+    border-radius: 999px;
+    width: 0%;
+    transition: width 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 150ms ease;
+  }
+  .reset-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* MODULES */
+  .module {
+    margin-bottom: 64px;
+  }
+
+  .module-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .module-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    flex: 0 0 auto;
+  }
+
+  .module-title {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .module-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink-faded);
+  }
+
+  /* QUESTION CARD */
+  .q-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .q-card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 22px 24px;
+    display: grid;
+    grid-template-columns: 40px 1fr 180px;
+    gap: 20px;
+    align-items: start;
+    transition: all 200ms ease;
+    position: relative;
+  }
+
+  .q-card:hover {
+    border-color: #d4ccba;
+    transform: translateY(-1px);
+  }
+
+  .q-card.is-done {
+    background: #fbfaf6;
+    opacity: 0.7;
+  }
+
+  .q-card.is-revisit {
+    border-left: 3px solid var(--amber);
+    padding-left: 21px;
+  }
+
+  .q-card.is-revisit::before {
+    content: 'REVISIT';
+    position: absolute;
+    top: 8px;
+    right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    background: var(--amber-soft);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  .q-num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--ink-faded);
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .q-card.is-done .q-num { color: var(--green); }
+
+  .q-body { min-width: 0; }
+
+  .q-question {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 14px;
+    letter-spacing: -0.005em;
+  }
+
+  .q-card.is-done .q-question {
+    text-decoration: line-through;
+    text-decoration-color: var(--strike);
+    text-decoration-thickness: 1.5px;
+    color: var(--ink-muted);
+  }
+
+  .q-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .q-meta-row {
+    display: flex;
+    gap: 10px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  .q-meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    flex: 0 0 60px;
+    padding-top: 3px;
+  }
+
+  .q-meta-text { flex: 1; }
+
+  /* CHECKBOX COLUMN */
+  .q-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 4px;
+  }
+
+  .check-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    padding: 6px 8px;
+    border-radius: 3px;
+    transition: background 120ms ease;
+  }
+
+  .check-row:hover { background: var(--rule-soft); }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--ink-faded);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    transition: all 150ms ease;
+    flex: 0 0 auto;
+  }
+
+  .check-row input { display: none; }
+
+  .check-box svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+
+  .check-row[data-type="done"] input:checked + .check-box {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check-row[data-type="done"] input:checked + .check-box svg { opacity: 1; }
+
+  .check-row[data-type="revisit"] input:checked + .check-box {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+  .check-row[data-type="revisit"] input:checked + .check-box svg { opacity: 1; }
+
+  .check-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  /* FOOTER */
+  .footer-note {
+    margin-top: 56px;
+    padding: 28px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .footer-note-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+
+  .footer-note p {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .footer-bottom {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 760px) {
+    .container { padding: 40px 20px 64px; }
+    .q-card {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .q-num {
+      font-size: 22px;
+      display: inline-block;
+    }
+    .q-controls {
+      flex-direction: row;
+      padding-top: 0;
+      border-top: 1px solid var(--rule);
+      padding-top: 12px;
+      gap: 8px;
+    }
+    .check-row { flex: 1; justify-content: center; }
+    .q-card.is-revisit::before { right: 16px; }
+    .masthead-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-left">
+      <p class="eyebrow">A study companion · 30 questions</p>
+      <h1>The Day Trader's <span class="accent">Syllabus</span></h1>
+      <p class="subtitle">Thirty questions to ask an AI tutor — organized like a real curriculum. Foundations, technicals, strategy, risk, psychology, and the advanced terrain.</p>
+    </div>
+    <div class="masthead-right">
+      Vol. 1 / 2026<br/>
+      Edition I
+    </div>
+  </header>
+
+  <!-- PROGRESS -->
+  <div class="progress-shell">
+    <div class="progress-stat">
+      <p class="progress-stat-label">Completed</p>
+      <p class="progress-stat-value"><span id="done-count">0</span><span class="denom">/30</span></p>
+    </div>
+    <div class="progress-stat">
+      <p class="progress-stat-label">To revisit</p>
+      <p class="progress-stat-value"><span id="revisit-count">0</span><span class="denom">/30</span></p>
+    </div>
+    <div class="progress-bar-wrap">
+      <p class="progress-stat-label">Progress</p>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+    </div>
+    <button class="reset-btn" id="reset-btn">Reset</button>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="syllabus-root"></div>
+
+  <!-- FOOTER NOTE -->
+  <div class="footer-note">
+    <p class="footer-note-eyebrow">How to use this</p>
+    <p>Pick one question per day. Don't rush. After the AI answers, have it quiz you on what you just learned. Keep a journal of your answers — that's where the real syllabus lives.</p>
+  </div>
+
+  <div class="footer-bottom">
+    <span>Made with care</span>
+    <span id="last-saved">Progress saves automatically</span>
+  </div>
+
 </div>
 
-<!-- MODULE 1 -->
-<div style="display: inline-block; background: var(--color-background-info); color: var(--color-text-info); font-size: 12px; padding: 4px 12px; border-radius: var(--border-radius-md); margin-bottom: 12px; font-weight: 500;">Module 1 · Foundations refresher</div>
+<script>
+  // DATA
+  const SYLLABUS = [
+    {
+      module: "Foundations refresher",
+      moduleNum: "I",
+      items: [
+        { n: 1, q: "Quiz me on Level 2 order book reading — show me 5 example scenarios and have me predict the next move.", why: "Reading the tape separates guessers from traders. Active practice beats passive reading.", outcome: "Recognize bid/ask imbalance, spoofing, hidden orders, and absorption in real time." },
+        { n: 2, q: "Explain the difference between market makers, ECNs, and dark pools — and how each affects my fills.", why: "Understanding who's on the other side of your trade changes how you place orders.", outcome: "Smarter order routing decisions, fewer surprise slippages." },
+        { n: 3, q: "What are the exact rules around the PDT (Pattern Day Trader) designation, and what are real strategies to work around it?", why: "The $25K rule wrecks small accounts that don't plan around it.", outcome: "Know how to structure trades, use cash accounts, or multiple brokers legally." },
+        { n: 4, q: "Walk me through the full anatomy of a trade — from scan to entry to exit — for a momentum setup.", why: "A clear mental model for the whole trade lifecycle reduces hesitation.", outcome: "A repeatable checklist you can apply every morning." },
+        { n: 5, q: "What's the difference between float, share structure, and short interest — and how do they affect intraday price action?", why: "Low-float runners trade nothing like large caps. Wrong assumption, wrong stop.", outcome: "Match strategy to ticker type." }
+      ]
+    },
+    {
+      module: "Technical analysis",
+      moduleNum: "II",
+      items: [
+        { n: 6, q: "Quiz me on candlestick patterns — describe one and have me name it, then have me describe one for you to name.", why: "Two-way practice locks in pattern recognition far faster than flashcards.", outcome: "Instant recognition of hammers, engulfing, dojis, harami, and their context." },
+        { n: 7, q: "Explain VWAP — how it's calculated, who uses it, and three different ways to trade off it.", why: "VWAP is the most important intraday level institutions watch. Anchor for entries and exits.", outcome: "VWAP bounces, VWAP rejections, VWAP reclaim setups." },
+        { n: 8, q: "What are the most reliable chart patterns for day trading, and what's the failure rate of each?", why: "Knowing the failure rate matters as much as the pattern itself.", outcome: "Bull flags, ABCDs, opening range breakouts — with realistic expectations." },
+        { n: 9, q: "How do I read volume properly? What does volume tell me that price doesn't?", why: "Price without volume context is half the picture.", outcome: "Spot exhaustion, climactic volume, dry-ups, and accumulation." },
+        { n: 10, q: "Explain support and resistance like I've never heard of them — then teach me what actually creates them.", why: "Most traders draw lines on charts without understanding the order flow behind them.", outcome: "Understanding stop clusters, liquidity pools, and why levels actually hold." },
+        { n: 11, q: "What indicators are actually useful for day trading and which are noise? Explain the math behind RSI and MACD.", why: "Most new traders stack indicators. Knowing what each one actually measures kills the clutter.", outcome: "A minimalist chart with intentional tools." }
+      ]
+    },
+    {
+      module: "Strategy & setups",
+      moduleNum: "III",
+      items: [
+        { n: 12, q: "Compare gap-and-go, opening range breakout, and VWAP reclaim — entry, stop, target, and conditions for each.", why: "Different markets reward different strategies. Picking the right one matters.", outcome: "A toolkit of 3 setups with crystal-clear rules." },
+        { n: 13, q: "Help me build a pre-market routine — what should I check between 7am and 9:30am?", why: "Most edge is built before the bell, not during the chaos.", outcome: "A repeatable checklist: gappers, news, levels, watchlist." },
+        { n: 14, q: "What scanner criteria do successful day traders use? Give me 5 scan templates to test.", why: "Finding tradeable tickers is half the battle.", outcome: "Concrete scan filters for momentum, gap, and reversal setups." },
+        { n: 15, q: "Explain how news catalysts move stocks — earnings, FDA, guidance, dilution, offerings. Which are tradeable, which are traps?", why: "Catalysts make low-floats run. They also trap people on the wrong side.", outcome: "Skip the traps (offerings, dilution announcements), trade the real moves." },
+        { n: 16, q: "What does 'tape reading' actually mean and how do I practice it without spending money?", why: "Tape reading is a dying skill that still works.", outcome: "Ability to feel momentum shifts before the chart confirms." }
+      ]
+    },
+    {
+      module: "Risk management — the part that keeps you alive",
+      moduleNum: "IV",
+      items: [
+        { n: 17, q: "Teach me position sizing math. Given a $X account and Y% risk per trade, how many shares do I buy with a stop at Z?", why: "Most traders blow up from oversizing, not bad setups.", outcome: "Reflex-level math: stop distance × shares = max loss." },
+        { n: 18, q: "Explain risk/reward and win rate together — what win rate do I need at 1:1, 2:1, 3:1 to be profitable?", why: "A 40% win rate can be profitable. A 70% win rate can lose money. The ratio matters more than the streak.", outcome: "Stop chasing win rate, start chasing expectancy." },
+        { n: 19, q: "Walk me through what a 'hard stop loss' is, when to use it, and why mental stops fail.", why: "Mental stops are how good traders become bag holders.", outcome: "A rule about when stops are mandatory." },
+        { n: 20, q: "What's the math of drawdown recovery? If I lose 30%, what return do I need to break even?", why: "30% loss needs 43% gain. 50% loss needs 100%. Drawdowns punish exponentially.", outcome: "Visceral understanding that defense beats offense." },
+        { n: 21, q: "Help me design daily and weekly loss limits — and what to do when I hit them.", why: "Revenge trading after losses ruins more accounts than bad strategies.", outcome: "Hard rules that take the decision out of a tilted moment." }
+      ]
+    },
+    {
+      module: "Psychology & process",
+      moduleNum: "V",
+      items: [
+        { n: 22, q: "Help me design a trading journal template — what fields should I track for each trade, and why?", why: "You can't fix what you don't measure. Journaling is the single highest-ROI activity in trading.", outcome: "A template covering setup, emotion, execution, and lesson learned." },
+        { n: 23, q: "I'll describe a losing trade — analyze it with me and tell me what I did wrong without softening it.", why: "Brutal honest review of losers is where growth happens.", outcome: "Pattern recognition for your own mistakes." },
+        { n: 24, q: "Explain FOMO, revenge trading, and overtrading — what triggers them and how do I build systems against them?", why: "The market exploits human emotion. The defense is structural, not willpower.", outcome: "Tactical rules: cooldowns, max trades per day, screen-off triggers." },
+        { n: 25, q: "Build me a weekly performance review template — what metrics matter beyond P&L?", why: "P&L lies short-term. Process metrics tell the real story.", outcome: "Win rate, avg R, plan adherence, mistake frequency." }
+      ]
+    },
+    {
+      module: "Advanced topics",
+      moduleNum: "VI",
+      items: [
+        { n: 26, q: "Explain options basics in plain English — calls, puts, strikes, expiration, IV — and why most day traders should not touch them yet.", why: "Options look cheap. They're not. Understanding the trap is the first step.", outcome: "Decide intentionally if/when to add options to your toolkit." },
+        { n: 27, q: "Teach me how to backtest a strategy manually — what's the process and where do most people screw it up?", why: "Forward-testing alone is too slow. Manual backtesting builds intuition fast.", outcome: "Validated stats on your own setups before risking real money on size." },
+        { n: 28, q: "What are short squeezes, gamma squeezes, and short ladder attacks — how do I spot them developing?", why: "These are the big-payout events. They also burn people who chase late.", outcome: "Distinguish a real squeeze setup from social-media hype." },
+        { n: 29, q: "Explain how taxes work for day traders — wash sales, short-term gains, and mark-to-market election.", why: "A profitable year can become a tax nightmare without planning.", outcome: "Know what to track and when to talk to a CPA." },
+        { n: 30, q: "Play devil's advocate — argue why I should quit day trading. Be honest about the base rates.", why: "Stress-testing the decision keeps you sharp and honest about expectations.", outcome: "A grounded view of survivor bias and what makes the small % who succeed different." }
+      ]
+    }
+  ];
 
-<div style="display: grid; gap: 12px; margin-bottom: 2rem;">
+  const STORAGE_KEY = 'dayTradingSyllabusProgress_v1';
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">01</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Quiz me on Level 2 order book reading — show me 5 example scenarios and have me predict the next move."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Reading the tape separates guessers from traders. Active practice beats passive reading.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Recognize bid/ask imbalance, spoofing, hidden orders, and absorption in real time.</p>
-  </div>
+  // STATE
+  let state = loadState();
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">02</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Explain the difference between market makers, ECNs, and dark pools — and how each affects my fills."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Understanding who's on the other side of your trade changes how you place orders.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Smarter order routing decisions, fewer surprise slippages.</p>
-  </div>
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+    } catch (e) { /* ignore */ }
+    const fresh = {};
+    SYLLABUS.forEach(mod => mod.items.forEach(item => {
+      fresh[item.n] = { done: false, revisit: false };
+    }));
+    return fresh;
+  }
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">03</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"What are the exact rules around the PDT (Pattern Day Trader) designation, and what are real strategies to work around it?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> The $25K rule wrecks small accounts that don't plan around it.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Know how to structure trades, use cash accounts, or multiple brokers legally.</p>
-  </div>
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* ignore */ }
+  }
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">04</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Walk me through the full anatomy of a trade — from scan to entry to exit — for a momentum setup."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> A clear mental model for the whole trade lifecycle reduces hesitation.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> A repeatable checklist she can apply every morning.</p>
-  </div>
+  // ICONS
+  const CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+  const STAR_SVG = '<svg viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>';
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">05</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"What's the difference between float, share structure, and short interest — and how do they affect intraday price action?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Low-float runners trade nothing like large caps. Wrong assumption, wrong stop.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Match strategy to ticker type.</p>
-  </div>
+  // RENDER
+  function render() {
+    const root = document.getElementById('syllabus-root');
+    let html = '';
+    SYLLABUS.forEach(mod => {
+      html += `
+        <section class="module">
+          <div class="module-header">
+            <span class="module-num">Module ${mod.moduleNum}</span>
+            <h2 class="module-title">${mod.module}</h2>
+            <span class="module-count">${mod.items.length} questions</span>
+          </div>
+          <div class="q-list">
+            ${mod.items.map(item => renderCard(item)).join('')}
+          </div>
+        </section>
+      `;
+    });
+    root.innerHTML = html;
+    attachListeners();
+    updateProgress();
+  }
 
-</div>
+  function renderCard(item) {
+    const s = state[item.n] || { done: false, revisit: false };
+    const classes = ['q-card'];
+    if (s.done) classes.push('is-done');
+    if (s.revisit) classes.push('is-revisit');
+    const num = String(item.n).padStart(2, '0');
 
-<!-- MODULE 2 -->
-<div style="display: inline-block; background: var(--color-background-info); color: var(--color-text-info); font-size: 12px; padding: 4px 12px; border-radius: var(--border-radius-md); margin-bottom: 12px; font-weight: 500;">Module 2 · Technical analysis</div>
+    return `
+      <article class="${classes.join(' ')}" data-id="${item.n}">
+        <div class="q-num">${num}</div>
+        <div class="q-body">
+          <p class="q-question">${escapeHtml(item.q)}</p>
+          <div class="q-meta">
+            <div class="q-meta-row">
+              <span class="q-meta-label">Why</span>
+              <span class="q-meta-text">${escapeHtml(item.why)}</span>
+            </div>
+            <div class="q-meta-row">
+              <span class="q-meta-label">Outcome</span>
+              <span class="q-meta-text">${escapeHtml(item.outcome)}</span>
+            </div>
+          </div>
+        </div>
+        <div class="q-controls">
+          <label class="check-row" data-type="done">
+            <input type="checkbox" data-id="${item.n}" data-field="done" ${s.done ? 'checked' : ''} />
+            <span class="check-box">${CHECK_SVG}</span>
+            <span class="check-label">Completed</span>
+          </label>
+          <label class="check-row" data-type="revisit">
+            <input type="checkbox" data-id="${item.n}" data-field="revisit" ${s.revisit ? 'checked' : ''} />
+            <span class="check-box">${STAR_SVG}</span>
+            <span class="check-label">Revisit</span>
+          </label>
+        </div>
+      </article>
+    `;
+  }
 
-<div style="display: grid; gap: 12px; margin-bottom: 2rem;">
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">06</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Quiz me on candlestick patterns — describe one and have me name it, then have me describe one for you to name."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Two-way practice locks in pattern recognition far faster than flashcards.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Instant recognition of hammers, engulfing, dojis, harami, and their context.</p>
-  </div>
+  function attachListeners() {
+    document.querySelectorAll('.q-controls input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        const id = parseInt(e.target.dataset.id, 10);
+        const field = e.target.dataset.field;
+        if (!state[id]) state[id] = { done: false, revisit: false };
+        state[id][field] = e.target.checked;
+        saveState();
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">07</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Explain VWAP — how it's calculated, who uses it, and three different ways to trade off it."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> VWAP is the most important intraday level institutions watch. Anchor for entries and exits.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> VWAP bounces, VWAP rejections, VWAP reclaim setups.</p>
-  </div>
+        // Update card classes
+        const card = document.querySelector(`.q-card[data-id="${id}"]`);
+        if (card) {
+          card.classList.toggle('is-done', state[id].done);
+          card.classList.toggle('is-revisit', state[id].revisit);
+        }
+        updateProgress();
+        flashSaved();
+      });
+    });
+  }
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">08</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"What are the most reliable chart patterns for day trading, and what's the failure rate of each?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Knowing the failure rate matters as much as the pattern itself.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Bull flags, ABCDs, opening range breakouts — with realistic expectations.</p>
-  </div>
+  function updateProgress() {
+    let doneCount = 0, revisitCount = 0;
+    Object.values(state).forEach(v => {
+      if (v.done) doneCount++;
+      if (v.revisit) revisitCount++;
+    });
+    document.getElementById('done-count').textContent = doneCount;
+    document.getElementById('revisit-count').textContent = revisitCount;
+    const pct = Math.round((doneCount / 30) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">09</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"How do I read volume properly? What does volume tell me that price doesn't?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Price without volume context is half the picture.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Spot exhaustion, climactic volume, dry-ups, and accumulation.</p>
-  </div>
+  let flashTimer;
+  function flashSaved() {
+    const el = document.getElementById('last-saved');
+    el.textContent = 'Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    el.style.color = 'var(--green)';
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(() => {
+      el.style.color = '';
+      el.textContent = 'Progress saves automatically';
+    }, 2200);
+  }
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">10</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Explain support and resistance like I've never heard of them — then teach me what actually creates them."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Most traders draw lines on charts without understanding the order flow behind them.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Understanding stop clusters, liquidity pools, and why levels actually hold.</p>
-  </div>
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    if (confirm('Reset all progress? This cannot be undone.')) {
+      state = {};
+      SYLLABUS.forEach(mod => mod.items.forEach(item => {
+        state[item.n] = { done: false, revisit: false };
+      }));
+      saveState();
+      render();
+    }
+  });
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">11</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"What indicators are actually useful for day trading and which are noise? Explain the math behind RSI and MACD."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Most new traders stack indicators. Knowing what each one actually measures kills the clutter.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> A minimalist chart with intentional tools.</p>
-  </div>
+  render();
+</script>
 
-</div>
-
-<!-- MODULE 3 -->
-<div style="display: inline-block; background: var(--color-background-info); color: var(--color-text-info); font-size: 12px; padding: 4px 12px; border-radius: var(--border-radius-md); margin-bottom: 12px; font-weight: 500;">Module 3 · Strategy & setups</div>
-
-<div style="display: grid; gap: 12px; margin-bottom: 2rem;">
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">12</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Compare gap-and-go, opening range breakout, and VWAP reclaim — entry, stop, target, and conditions for each."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Different markets reward different strategies. Picking the right one matters.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> A toolkit of 3 setups with crystal-clear rules.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">13</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Help me build a pre-market routine — what should I check between 7am and 9:30am?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Most edge is built before the bell, not during the chaos.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> A repeatable checklist: gappers, news, levels, watchlist.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">14</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"What scanner criteria do successful day traders use? Give me 5 scan templates to test."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Finding tradeable tickers is half the battle.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Concrete scan filters for momentum, gap, and reversal setups.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">15</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Explain how news catalysts move stocks — earnings, FDA, guidance, dilution, offerings. Which are tradeable, which are traps?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Catalysts make low-floats run. They also trap people on the wrong side.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Skip the traps (offerings, dilution announcements), trade the real moves.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">16</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"What does 'tape reading' actually mean and how do I practice it without spending money?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Tape reading is a dying skill that still works.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Ability to feel momentum shifts before the chart confirms.</p>
-  </div>
-
-</div>
-
-<!-- MODULE 4 -->
-<div style="display: inline-block; background: var(--color-background-warning); color: var(--color-text-warning); font-size: 12px; padding: 4px 12px; border-radius: var(--border-radius-md); margin-bottom: 12px; font-weight: 500;">Module 4 · Risk management (the part that keeps you alive)</div>
-
-<div style="display: grid; gap: 12px; margin-bottom: 2rem;">
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">17</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Teach me position sizing math. Given a $X account and Y% risk per trade, how many shares do I buy with a stop at Z?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Most traders blow up from oversizing, not bad setups.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Reflex-level math: stop distance × shares = max loss.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">18</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Explain risk/reward and win rate together — what win rate do I need at 1:1, 2:1, 3:1 to be profitable?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> A 40% win rate can be profitable. A 70% win rate can lose money. The ratio matters more than the streak.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Stop chasing win rate, start chasing expectancy.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">19</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Walk me through what a 'hard stop loss' is, when to use it, and why mental stops fail."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Mental stops are how good traders become bag holders.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> A rule about when stops are mandatory.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">20</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"What's the math of drawdown recovery? If I lose 30%, what return do I need to break even?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> 30% loss needs 43% gain. 50% loss needs 100%. Drawdowns punish exponentially.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Visceral understanding that defense > offense.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">21</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Help me design daily and weekly loss limits — and what to do when I hit them."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Revenge trading after losses ruins more accounts than bad strategies.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Hard rules that take the decision out of a tilted moment.</p>
-  </div>
-
-</div>
-
-<!-- MODULE 5 -->
-<div style="display: inline-block; background: var(--color-background-info); color: var(--color-text-info); font-size: 12px; padding: 4px 12px; border-radius: var(--border-radius-md); margin-bottom: 12px; font-weight: 500;">Module 5 · Psychology & process</div>
-
-<div style="display: grid; gap: 12px; margin-bottom: 2rem;">
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">22</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Help me design a trading journal template — what fields should I track for each trade, and why?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> You can't fix what you don't measure. Journaling is the single highest-ROI activity in trading.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> A template covering setup, emotion, execution, and lesson learned.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">23</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"I'll describe a losing trade — analyze it with me and tell me what I did wrong without softening it."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Brutal honest review of losers is where growth happens.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Pattern recognition for her own mistakes.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">24</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Explain FOMO, revenge trading, and overtrading — what triggers them and how do I build systems against them?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> The market exploits human emotion. The defense is structural, not willpower.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Tactical rules: cooldowns, max trades per day, screen-off triggers.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">25</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Build me a weekly performance review template — what metrics matter beyond P&L?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> P&L lies short-term. Process metrics tell the real story.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Win rate, avg R, plan adherence, mistake frequency.</p>
-  </div>
-
-</div>
-
-<!-- MODULE 6 -->
-<div style="display: inline-block; background: var(--color-background-info); color: var(--color-text-info); font-size: 12px; padding: 4px 12px; border-radius: var(--border-radius-md); margin-bottom: 12px; font-weight: 500;">Module 6 · Advanced topics</div>
-
-<div style="display: grid; gap: 12px; margin-bottom: 2rem;">
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">26</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Explain options basics in plain English — calls, puts, strikes, expiration, IV — and why most day traders should not touch them yet."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Options look cheap. They're not. Understanding the trap is the first step.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Decide intentionally if/when to add options to her toolkit.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">27</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Teach me how to backtest a strategy manually — what's the process and where do most people screw it up?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Forward-testing alone is too slow. Manual backtesting builds intuition fast.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Validated stats on her own setups before risking real money on size.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">28</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"What are short squeezes, gamma squeezes, and short ladder attacks — how do I spot them developing?"</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> These are the big-payout events. They also burn people who chase late.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Distinguish a real squeeze setup from social-media hype.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">29</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Explain how taxes work for day traders — wash sales, short-term gains, and mark-to-market election."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> A profitable year can become a tax nightmare without planning.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> Know what to track and when to talk to a CPA.</p>
-  </div>
-
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem;">
-    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
-      <span style="font-size: 13px; color: var(--color-text-tertiary); font-weight: 500;">30</span>
-      <p style="font-weight: 500; margin: 0; font-size: 15px;">"Play devil's advocate — argue why I should quit day trading. Be honest about the base rates."</p>
-    </div>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Why:</strong> Stress-testing the decision keeps her sharp and honest about expectations.</p>
-    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 4px 0;"><strong style="font-weight: 500;">Outcome:</strong> A grounded view of survivor bias and what makes the small % who succeed different.</p>
-  </div>
-
-</div>
-
-<div style="background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-top: 1.5rem;">
-  <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0; line-height: 1.6;"><strong style="font-weight: 500; color: var(--color-text-primary);">How to use this:</strong> Pick one question per day. Don't rush. After AI answers, have it quiz you on what you just learned. Keep a journal of your answers — that's the real syllabus.</p>
-</div>
-
-</div>
+</body>
+</html>
